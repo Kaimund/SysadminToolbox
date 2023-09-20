@@ -4,6 +4,8 @@
 # This script attempts to send an email directly from the PC to a specified email address, authenticating with Microsoft 365's SMTP Servers (Exchange Online)
 # This is useful for diagnosing network issues with SMTP Auth from MFPs
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+
 $EmailFrom = Read-Host -Prompt "Email address to send FROM"
 
 $AccPwd = Read-Host -Prompt "Please enter the password for this account" -AsSecureString
