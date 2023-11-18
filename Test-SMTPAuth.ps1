@@ -1,16 +1,18 @@
-# Run-EXOSMTPAuthTest.ps1
+# Test-SMTPAuth.ps1
 # Copyright (C) 2023 Kaimund
 # 
-# This script attempts to send an email directly from the PC to a specified email address, authenticating with Microsoft 365's SMTP Servers (Exchange Online)
+# This script attempts to send an email directly from the PC to a specified email address, authenticating with an SMTP Server
 # This is useful for diagnosing network issues with SMTP Auth from MFPs
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
 $EmailFrom = Read-Host -Prompt "Email address to send FROM"
 
-$AccPwd = Read-Host -Prompt "Please enter the password for this account" -AsSecureString
+$AccPwd = Read-Host -Prompt "Please enter the password for this account. If using MFA, use an APP PASSWORD" -AsSecureString
 
 $EmailTo = Read-Host -Prompt "Email address to send TO"
+
+# TODO: Add a prompt for other email services other than Exchange Online
 
 $SMTPServer = "smtp.office365.com"
 

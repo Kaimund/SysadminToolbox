@@ -14,6 +14,12 @@ $valueTextComplex = ""
 # Main Script
 $registryPath = "HKCU:\SOFTWARE\Microsoft\Office\16.0\Common\MailSettings"
 
+# Check to make sure the four variables above are not null
+if (!$valueSimple -or !$valueComposeComplex -or !$valueReplyComplex -or !$valueTextComplex) {
+    Write-Error 'You need to populate the four variables at the top of this script with the values you obtained from Get-OutlookStationery first.'
+    exit
+}
+
 # Convert the comma-separated binary to binary that can be saved to the registry
 $hexSimple = $valueSimple.Split(',') | ForEach-Object { "0x$_" }
 $hexComposeComplex = $valueComposeComplex.Split(',') | ForEach-Object { "0x$_" }
@@ -39,3 +45,5 @@ if (!(Test-Path $registryPath)) {
     Set-ItemProperty -Path $registryPath -Name "ReplyFontComplex" -Value ([byte[]]$hexReplyComplex) -Force
     Set-ItemProperty -Path $registryPath -Name "TextFontComplex" -Value ([byte[]]$hexTextComplex) -Force
 }
+
+Write-Output 'Your Outlook stationery has been updated.'

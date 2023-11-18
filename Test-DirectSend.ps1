@@ -1,4 +1,4 @@
-# Run-DirectSendTest.ps1
+# Test-DirectSend.ps1
 # Copyright (C) 2023 Kaimund
 # 
 # This script attempts to send an email directly from the PC to a specified email address, and displays an error if it fails
